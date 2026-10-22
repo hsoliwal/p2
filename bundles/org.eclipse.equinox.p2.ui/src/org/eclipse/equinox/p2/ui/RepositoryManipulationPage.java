@@ -540,13 +540,22 @@ public class RepositoryManipulationPage extends PreferencePage implements IWorkb
 
 	MetadataRepositoryElement[] getSelectedElements() {
 		Object[] items = repositoryViewer.getStructuredSelection().toArray();
-		ArrayList<Object> list = new ArrayList<>(items.length);
+		// Preserve the input's occurrence order and duplicate references without
+		// allocating an intermediate List or Entry object for each selected row.
+		int count = 0;
 		for (Object item : items) {
 			if (item instanceof MetadataRepositoryElement) {
-				list.add(item);
+				count++;
 			}
 		}
-		return list.toArray(new MetadataRepositoryElement[list.size()]);
+		MetadataRepositoryElement[] selected = new MetadataRepositoryElement[count];
+		int index = 0;
+		for (Object item : items) {
+			if (item instanceof MetadataRepositoryElement element) {
+				selected[index++] = element;
+			}
+		}
+		return selected;
 	}
 
 	void validateButtons() {
