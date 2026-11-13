@@ -66,6 +66,12 @@
 									<id>org.eclipse.equinox.p2.reconciler</id>
 								</product>
 							</products>
+							<profileProperties>
+								<!-- M3JDK21: org.eclipse.swt (SWT fork) requires its native fragment and org.eclipse.e4.ui.dialogs the SVG
+								     rasterizer through the generic capability 'eclipse.swt'; this test product includes neither. The build-time
+								     dependency resolution switches that requirement off (eclipse-platform-parent), so the director does too. -->
+								<org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>true</org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>
+							</profileProperties>
 						</configuration>
 					</execution>
 				</executions>
