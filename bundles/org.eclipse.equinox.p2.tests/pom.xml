@@ -23,6 +23,10 @@
 		<defaultSigning-excludeInnerJars>true</defaultSigning-excludeInnerJars>
 		<archiveExtension>tar.gz</archiveExtension>
 		<dropinsProduct>${project.build.directory}/products/org.eclipse.equinox.p2.reconciler/${tycho.env.osgi.os}/${tycho.env.osgi.ws}/${tycho.env.osgi.arch}</dropinsProduct>
+		<!-- M3JDK21: this test bundle compiles nothing against SWT; its reconciler product resolves without the SWT fork's
+		     'eclipse.swt' capability requirements (eclipse-platform-parent maps this property to the dependency-resolution
+		     profile property org.eclipse.equinox.p2.disable.require.capability.eclipse.swt; unused with a parent without it) -->
+		<swt.capability.buildtime.disabled>true</swt.capability.buildtime.disabled>
 	</properties>
 
 	<build>
@@ -66,6 +70,12 @@
 									<id>org.eclipse.equinox.p2.reconciler</id>
 								</product>
 							</products>
+							<profileProperties>
+								<!-- M3JDK21: org.eclipse.swt (SWT fork) requires its native fragment and org.eclipse.e4.ui.dialogs the SVG
+								     rasterizer through the generic capability 'eclipse.swt'; this test product includes neither. This project's
+								     dependency resolution switches that requirement off (swt.capability.buildtime.disabled), so the director does too. -->
+								<org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>true</org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>
+							</profileProperties>
 						</configuration>
 					</execution>
 				</executions>
