@@ -134,3 +134,14 @@ The human committer stays responsible for everything that is contributed; make t
 * **IP cleanliness:** do not copy code from other projects or from memory of other sources; write it yourself or stop and ask. Do not add new third-party dependencies, bundled libraries or binaries without the user's explicit agreement, they require IP due diligence.
 * **Confidentiality:** do not put secrets, credentials, personal data or other confidential content into code, commits, logs or issues.
 * **No autonomous publishing:** do not push, open or merge pull requests, or write to issue trackers on your own; a human reviews and submits.
+
+
+## Superset merge and history-audit rule (2026-11-18)
+
+Read [.github/MERGE_RULE.md](.github/MERGE_RULE.md) before changing an existing implementation or integrating any branch or PR.
+Preserve the supported additive API/behavior superset and select implementations by correctness, predictability, measured performance, then elegance.
+Audit all reachable history back to every root, all branches/tags and all PR states for lost code or regressions; preserve append-only history.
+Record actual UTC coverage and remaining work in [.github/HISTORY_AUDIT.tsv](.github/HISTORY_AUDIT.tsv); policy installation is not a completed source-history audit.
+Prefer verified Apache-2.0 sources and independent implementations while preserving all existing third-party rights; LLM rewriting does not remove license obligations.
+Detailed private recipe/proof records remain in canonical Synexia; the compact local policy and checkpoint make the rule discoverable here.
+<!-- MERGE-SUPERSET-HISTORY-20261118-2 -->
